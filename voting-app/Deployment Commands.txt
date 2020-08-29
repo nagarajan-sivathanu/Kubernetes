@@ -1,0 +1,17 @@
+  
+   
+kubectl create -f D:\Technology\Kubernetes\voting-app\voting-app-pod.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\redis-pod.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\postgres-pod.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\worker-pod.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\result-app-pod.yaml
+
+kubectl create -f D:\Technology\Kubernetes\voting-app\voting-app-service.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\redis-service.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\postgres-service.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\result-app-service.yaml
+
+kubectl get pods,svc
+
+minikube service list			(list all services that are currently running)
+minikube service voting-app-service --url
