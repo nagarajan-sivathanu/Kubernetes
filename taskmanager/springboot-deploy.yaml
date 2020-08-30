@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deploy
+  labels:
+    name: api-deploy
+    app: taskmanager
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      name: api-pod
+      app: taskmanager
+  template:
+    metadata:
+      name: api-pod
+      labels:
+        name: api-pod
+        app: taskmanager
+    spec:
+      containers:
+        - name: taskmanager-springboot-container
+          image: nagaraj16/taskmanager_springboot_api:release_1.0.0
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-pod:5432/master"

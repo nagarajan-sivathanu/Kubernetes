@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ui-pod
+  labels:
+    name: ui-pod
+    app: taskmanager
+spec:
+  containers:
+    - name: taskmanager-angular-app
+      image: nagaraj16/taskmanager_angular_app:release_1.0.1
+      ports:
+        - containerPort: 8083
+      env:
+        - name: API_URL
+          value: "http://taskmanager-springboot-container:8081/api/tasks"
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: resource-volume
+  volumes:
+    - name: resource-volume
+      hostPath:
+          path: /usr/share/nginx/html
+          type: Directory

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-app-deploy
+  labels:
+    name: postgres-app-deploy
+    app: taskmanager
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      name: postgres-pod
+      app: taskmanager
+  template:
+    metadata:
+	  name: postgres-pod
+      labels:
+        name: postgres-pod
+        app: taskmanager
+    spec:
+      containers:
+        - name: taskmanager-db
+          image: nagaraj16/taskmanager_postgres_db:release_1.0.0
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "admin"
+            - name: POSTGRES_DB
+              value: "master"
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: data-volume
+      volumes:
+        - name: data-volume
+          hostPath:
+              path: /opt/postgres
+              type: Directory
