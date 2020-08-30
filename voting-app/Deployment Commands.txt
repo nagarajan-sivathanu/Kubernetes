@@ -15,3 +15,10 @@ kubectl get pods,svc
 
 minikube service list			(list all services that are currently running)
 minikube service voting-app-service --url
+
+
+kubectl create -f D:\Technology\Kubernetes\voting-app\voting-app-deploy.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\redis-app-deploy.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\postgres-deploy.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\worker-deploy.yaml
+kubectl create -f D:\Technology\Kubernetes\voting-app\result-app-deploy.yaml
